@@ -37,19 +37,29 @@ _mainloop:
 
 	mov	bl,	[esi]
 
-	cmp	al, "A"
-	je	.A
-	cmp	al, "B"
-	je	.B
-	cmp	al, "C"
-	je	.C
-	
-	; neither option means we are done
-	jmp	_done	
+	sub	ebx, 87		; Convert X-Y-Z to true value of choice (1-2-3)
+	add	ecx, ebx
+
+	mov	bl, [esi]	; move ascii back into bl, subtract ascii (ABC) and 1 
+	sub	ebx, eax
+	dec	ebx
+
+	mov	eax, ebx	; take modulo of the above sum
+	mov	ebx, 3
+	div	ebx
+
+	mov	eax, edx	; multiply by three to get win-draw-loss points
+	mul	ebx
+
+	add	ecx, eax	; add to total
 
 .nextline:
 
 	inc	esi
+
+	cmp	byte [esi], 0h
+	je	_done
+
 	jmp	_mainloop
 
 _done:
