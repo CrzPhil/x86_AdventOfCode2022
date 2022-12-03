@@ -5,4 +5,4 @@ Only this year I decided to mix things up a bit and take on the advent of code u
 Why you ask?  
 ![Why we do it](./speeeeeed.png)  
 
-Just look at all those milliseconds saved. Nice.
+Just look at all those nanoseconds saved. Nice.
