@@ -37,30 +37,19 @@ _loop:
 
 	push	ecx
 
-
-.for:
-
-;	cmp	edi, [length]
-;	je	_loop
-
-;	xor	ebx, ebx
-;	mov	ebx, [length]
-;	dec	ebx
-
-;	cmp	edi, ebx
 	push	dword [length]
 	add	[esp], ecx
+
+.for:
 
 	cmp	edi, [length]
 	je	_loop
 
 	mov	al,	byte [esi+ecx]
-;	mov	bl, al
-
-	inc	ecx
-;	inc	edi
 
 .for2:
+
+	inc	ecx
 
 	cmp	ecx, [esp]
 	je	.next	
@@ -71,8 +60,6 @@ _loop:
 	cmp	al,	bl
 	je	.dup
 
-	inc	ecx
-;	inc	edi
 	jmp	.for2
 
 .dup:
